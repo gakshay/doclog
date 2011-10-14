@@ -1,0 +1,31 @@
+/* application.css */
+
+body {
+	  background-color: #bad3ea;
+	    font-family: Verdana, Helvetica, Arial;
+		  font-size: 14px;
+}
+
+a img {
+	  border: none;
+}
+
+a {
+	  color: #007ead;
+	    text-decoration: none;
+}
+
+.clear {
+	  clear: both;
+	    height: 0;
+		  overflow: hidden;
+}
+
+.left { float: left;}
+.right { float: right;}
+.heading {padding: 8px;}
+
+input {
+	    border: 1px solid #98BF21;
+}
+
