@@ -1,4 +1,8 @@
 Doclog::Application.routes.draw do
+  resources :documents
+
+  resources :transactions
+
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
 
   get "home/index"
