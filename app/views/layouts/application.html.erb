@@ -10,6 +10,16 @@
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><%= alert %></p>
 
+    <div class="right">
+	  <% if user_signed_in? %>  
+		<%= current_user.mobile %> | <span><%= link_to "Sign out", destroy_user_session_path %></span>
+	  <% else %>
+		<span><%= link_to "Login", new_user_session_url %></span> | 
+		<span><%= link_to "Register", new_user_registration_url %></span>
+	  <% end %>
+	</div>
+
+
 <%= yield %>
 
 </body>

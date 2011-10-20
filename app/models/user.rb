@@ -5,14 +5,37 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :mobile, :email, :password, :password_confirmation, :remember_me
+  
+  validates_presence_of  :mobile, :if => :mobile_required?
+  validates_format_of    :mobile, :with => /(^[789][0-9]{9}$)|(^91[789][0-9]{9}$)/i, :allow_blank => true 
+  validates_uniqueness_of :mobile, :allow_blank => true
+  validates_numericality_of :mobile, :only_integer => true, :allow_nil  => true
+
+  validates_format_of :password, :with => /(^[0-9]{4,12}$)/i, :allow_blank => true
+
+  before_create :create_email_for_user
+
+
+  def create_email_for_user
+    self.email = "#{self.mobile}@gakshay.com" unless self.mobile.blank?
+  end
 
 
   protected
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
-    login = conditions.delete(:login)
-    where(conditions).where(["lower(username) = :value", { :value => login.downcase }]).first
+    mobile = conditions.delete(:mobile)
+    where(conditions).where(["lower(mobile) = :value", { :value => mobile.downcase }]).first
   end
+
+  def email_required?
+   false
+  end
+  
+  def mobile_required?
+    true
+  end
+
 end

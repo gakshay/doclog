@@ -25,10 +25,20 @@ ActiveRecord::Schema.define(:version => 20111014082922) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
+    t.string   "first_name",             :limit => 64
+    t.string   "middle_name",            :limit => 64
+    t.string   "last_name",              :limit => 64
+    t.string   "mobile",                 :limit => 64
+    t.integer  "age"
+    t.string   "gender",                 :limit => 10
+    t.text     "address"
+    t.string   "city",                   :limit => 64
+    t.string   "state",                  :limit => 64
+    t.string   "pincode",                :limit => 10
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["mobile"], :name => "index_users_on_mobile"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
