@@ -14,6 +14,7 @@ class AddFieldToUsers < ActiveRecord::Migration
   end
 
   def self.down
+    remove_index :users, :mobile
     remove_column :users, :first_name
     remove_column :users, :middle_name
     remove_column :users, :last_name
@@ -24,6 +25,5 @@ class AddFieldToUsers < ActiveRecord::Migration
     remove_column :users, :city
     remove_column :users, :state
     remove_column :users, :pincode
-    remove_index :users, :mobile
   end
 end

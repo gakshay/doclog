@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111020115104) do
+ActiveRecord::Schema.define(:version => 20111020183823) do
 
   create_table "documents", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +25,25 @@ ActiveRecord::Schema.define(:version => 20111020115104) do
   end
 
   add_index "documents", ["user_id"], :name => "index_documents_on_user_id"
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "document_id"
+    t.string   "document_secret"
+    t.integer  "sender_id"
+    t.string   "sender_mobile",   :limit => 64
+    t.integer  "receiver_id"
+    t.string   "receiver_mobile", :limit => 64
+    t.string   "receiver_email"
+    t.boolean  "sms_sent",                      :default => false
+    t.integer  "sms_count"
+    t.datetime "sms_sent_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["receiver_email"], :name => "index_transactions_on_receiver_email"
+  add_index "transactions", ["receiver_mobile"], :name => "index_transactions_on_receiver_mobile"
+  add_index "transactions", ["sender_mobile"], :name => "index_transactions_on_sender_mobile"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

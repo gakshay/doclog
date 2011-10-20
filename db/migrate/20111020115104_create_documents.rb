@@ -14,6 +14,7 @@ class CreateDocuments < ActiveRecord::Migration
   end
 
   def self.down
+    remove_index :documents, :user_id 
     drop_table :documents
   end
 end
