@@ -6,6 +6,7 @@ class Document < ActiveRecord::Base
   validates_attachment_size :doc, :less_than => 5.megabyte, :if => Proc.new { |imports| !imports.doc_file_name.blank? }
   
   belongs_to :user
-  has_many :transactions
+  belongs_to :transaction
+  #has_many :transactions
 
 end

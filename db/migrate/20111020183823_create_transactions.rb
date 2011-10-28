@@ -1,7 +1,6 @@
 class CreateTransactions < ActiveRecord::Migration
   def self.up
    create_table :transactions do |t|
-    t.integer :document_id
     t.string :document_secret
     t.integer :sender_id
     t.string :sender_mobile, :limit => 64

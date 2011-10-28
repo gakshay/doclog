@@ -89,7 +89,7 @@ class TransactionsController < ApplicationController
       unless params[:transaction][:receiver_mobile].blank? and params[:transaction][:document_secret].blank?
         @transaction = Transaction.get_document(params[:transaction][:receiver_mobile], params[:transaction][:document_secret]) 
         unless @transaction.blank?
-          @document = @transaction.document
+          @document = @transaction.documents.first
             send_file "public#{@document.doc.url.gsub(/\?\d+/, '')}" , :type => "#{@document.doc_content_type}" 
         else
           respond_to do |format|

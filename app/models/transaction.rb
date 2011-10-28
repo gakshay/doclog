@@ -11,8 +11,9 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :receiver_email, :if => :receiver_email_required?
   validates_format_of :receiver_email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i, :allow_blank => true
 
-  validates_presence_of :document_id
-  belongs_to :document
+  #validates_presence_of :document_id
+  has_one :document
+  accepts_nested_attributes_for :document, :allow_destroy => true
  
   def self.get_document(mobile, secure_code)
     unless mobile.blank? and secure_code.blank?

@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20111020183823) do
 
   create_table "documents", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "transaction_id"
     t.string   "doc_file_name"
     t.string   "doc_content_type"
     t.integer  "doc_file_size"
@@ -24,10 +25,10 @@ ActiveRecord::Schema.define(:version => 20111020183823) do
     t.datetime "updated_at"
   end
 
+  add_index "documents", ["transaction_id"], :name => "index_documents_on_transaction_id"
   add_index "documents", ["user_id"], :name => "index_documents_on_user_id"
 
   create_table "transactions", :force => true do |t|
-    t.integer  "document_id"
     t.string   "document_secret"
     t.integer  "sender_id"
     t.string   "sender_mobile",   :limit => 64

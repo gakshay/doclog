@@ -1,4 +1,4 @@
-<%= form_for(@transaction) do |f| %>
+<%= form_for(@transaction, :html => {:multipart => true}) do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -11,7 +11,19 @@
     </div>
   <% end %>
 
+  <p><%= f.label :receiver_mobile %> <br>
+  <%= f.text_field :receiver_mobile %> <br>
+  Or <br>
+  <%= f.label :receiver_email %> <br>
+  <%= f.email_field :receiver_email %> </p>
+
+  <%= f.hidden_field :sender_mobile, :value => current_user.mobile %>
+  <p><%#= f.label :document_label %> <br>
+  <%#= f.text_field :document_label %> </p>
+  
+  <%= add_document(f) %>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Edit Mail", :class => "button green" %>
   </div>
 <% end %>
