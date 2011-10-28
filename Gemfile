@@ -17,6 +17,7 @@ platforms :jruby do
 end
 
 #gem "rake", "0.8.7"
+gem 'i18n', '0.6.0'
 gem "devise"
 gem "paperclip"
 

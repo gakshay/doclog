@@ -1,0 +1,27 @@
+<h1>Receive Document</h1>
+
+<%= form_for(@transaction, :url => receive_transactions_path,  :html => {:method => :get}) do |f| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited to retreive Document</h2>
+
+      <ul>
+      <% @transaction.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p><%= f.label :receiver_mobile %> <br>
+  <%= f.text_field :receiver_mobile %> </p>
+
+  <p><%= f.label :document_secret %> <br>
+  <%= f.text_field :document_secret %> </p>
+
+  <div class="actions">
+    <%= f.submit "Receive Mail", :class => "button blue" %>
+  </div>
+<% end %>
+
+<%= link_to 'Login', new_user_session_url %> | <%= link_to 'Register', new_user_registration_url %>

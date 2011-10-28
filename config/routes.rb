@@ -1,7 +1,11 @@
 Doclog::Application.routes.draw do
   resources :documents
 
-  resources :transactions
+  resources :transactions do 
+    collection do 
+      get 'receive'
+    end
+  end
 
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
 

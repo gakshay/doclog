@@ -92,6 +92,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbc-adapter
   devise
+  i18n (= 0.6.0)
   jdbc-mysql
   mysql2
   paperclip

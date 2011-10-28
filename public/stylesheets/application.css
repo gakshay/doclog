@@ -1,24 +1,24 @@
 /* application.css */
 
 body {
-	  background-color: #bad3ea;
-	    font-family: Verdana, Helvetica, Arial;
-		  font-size: 14px;
+background-color: #bad3ea;
+font-family: Verdana, Helvetica, Arial;
+font-size: 14px;
 }
 
 a img {
-	  border: none;
+border: none;
 }
 
 a {
-	  color: #007ead;
-	    text-decoration: none;
+color: #007ead;
+text-decoration: none;
 }
 
 .clear {
-	  clear: both;
-	    height: 0;
-		  overflow: hidden;
+clear: both;
+height: 0;
+overflow: hidden;
 }
 
 .left { float: left;}
@@ -26,6 +26,6 @@ a {
 .heading {padding: 8px;}
 
 input {
-	    border: 1px solid #98BF21;
+	border: 1px solid #98BF21;
 }
 

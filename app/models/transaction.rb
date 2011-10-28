@@ -12,9 +12,20 @@ class Transaction < ActiveRecord::Base
   validates_format_of :receiver_email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i, :allow_blank => true
 
   validates_presence_of :document_id
-
   belongs_to :document
+ 
+  def self.get_document(mobile, secure_code)
+    unless mobile.blank? and secure_code.blank?
+      transaction = Transaction.where("(sender_mobile = ? OR receiver_mobile = ?) AND document_secret = ?", mobile, mobile, secure_code)
+      transaction.first unless transaction.blank?
+    else
+      record.errors.add(document_secret, "secret is wrong") if secure_code.blank?
+
+    end
+  end
+
   
+  # model hooks
   before_create :assign_sender, :assign_receiver, :generate_document_secret
   after_create :deliver_document_secret_sms
 
