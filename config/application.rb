@@ -38,5 +38,14 @@ module Doclog
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "gmail.com",
+    :authentication => :login,
+    :user_name => "bookglam@gmail.com",
+    :password => "bookglam123",
+    }
   end
 end

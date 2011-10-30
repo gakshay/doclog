@@ -86,10 +86,10 @@ class TransactionsController < ApplicationController
   # Receive /transactions/receive
   def receive
     unless params[:transaction].blank? 
-      unless params[:transaction][:receiver_mobile].blank? and params[:transaction][:document_secret].blank?
-        @transaction = Transaction.get_document(params[:transaction][:receiver_mobile], params[:transaction][:document_secret]) 
+      unless (params[:transaction][:receiver_mobile].blank? or params[:transaction][:receiver_email].blank?) and params[:transaction][:document_secret].blank?
+        @transaction = Transaction.get_document(params[:transaction][:receiver_mobile], params[:transaction][:receiver_email], params[:transaction][:document_secret]) 
         unless @transaction.blank?
-          @document = @transaction.documents.first
+          @document = @transaction.document
             send_file "public#{@document.doc.url.gsub(/\?\d+/, '')}" , :type => "#{@document.doc_content_type}" 
         else
           respond_to do |format|

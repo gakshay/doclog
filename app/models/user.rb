@@ -16,12 +16,10 @@ class User < ActiveRecord::Base
 
   before_create :create_email_for_user
 
-
   def create_email_for_user
     self.email = "#{self.mobile}@gakshay.com" unless self.mobile.blank?
   end
-
-
+  
   protected
 
   def self.find_for_database_authentication(warden_conditions)
