@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new.xml
   def new
     @transaction = Transaction.new
-
+    @transaction.build_document
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @transaction }

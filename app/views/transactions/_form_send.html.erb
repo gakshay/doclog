@@ -18,10 +18,15 @@
   <%= f.email_field :receiver_email %> </p>
 
   <%= f.hidden_field :sender_mobile, :value => current_user.mobile %>
-  <p><%#= f.label :document_label %> <br>
-  <%#= f.text_field :document_label %> </p>
-
-  <%= add_document(f) %>
+  
+  <%#= debug @transaction %>
+  <%#= add_document(f) %>
+  
+  <%= f.fields_for :document, @transaction.document do |document_form| %>
+      <p><%= document_form.label :doc, "Doc File" %>
+      <%= document_form.file_field :doc %>
+      </p>
+  <% end %>
   
   <div class="actions">
     <%= f.submit "Send Mail", :class => "button green" %>
