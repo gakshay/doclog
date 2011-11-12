@@ -44,8 +44,8 @@ module Doclog
     :port => 587,
     :domain => "gmail.com",
     :authentication => :login,
-    :user_name => "bookglam@gmail.com",
-    :password => "bookglam123",
+    :user_name => "edakia.in@gmail.com",
+    :password => "*****",
     }
   end
 end
