@@ -10,6 +10,7 @@ class TransactionMailer < ActionMailer::Base
   def send_recipient_email(transaction)
     unless transaction.blank?
       @recipient_email = transaction.receiver_email
+      @document_secret = transaction.document_secret
       unless @recipient_email.blank?
         @sender = transaction.sender_mobile
         attachments["#{transaction.document.doc_file_name}"]  = File.read("#{Rails.root}/public#{transaction.document.doc.url.gsub(/\?\d+/, '')}")
