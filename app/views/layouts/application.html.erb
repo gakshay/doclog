@@ -7,24 +7,28 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-
-	<h1><%= link_to "eDakia", "/", :class => "orange" %> </h1>
-    <div class="right">
+  <div class="header" style="width: 900px; margin: auto;">
+	<%= link_to image_tag("logo.png"), "/" %> 
+	<div class="right">
 	  <% if user_signed_in? %>  
-		<%= current_user.mobile %> | <span><%= link_to "Sign out", destroy_user_session_path, :class => "button blue" %></span><br> <br>
-		<span><%= link_to "Get Mail", receive_transactions_url, :class => "button green" %></span> |
-		<span><%= link_to "Send Mail", new_transaction_url, :class => "button green" %></span>
+		<%= current_user.mobile %> | <span><%= link_to "Sign out", destroy_user_session_path, :class => "button orange small" %></span>
+		<span><%= link_to "Get Mail", receive_transactions_url, :class => "button orange small" %></span> 
+		<span><%= link_to "Send Mail", new_transaction_url, :class => "button orange small" %></span>
 	  <% else %>
-		<span><%= link_to "Login", new_user_session_url, :class => "button blue" %></span> | 
-		<span><%= link_to "Register", new_user_registration_url, :class => "button blue" %></span> <br> <br>
-		<span><%= link_to "Get Mail", receive_transactions_url, :class => "button green" %></span> |
-		<span><%= link_to "Send Mail", new_transaction_url, :class => "button green" %></span>
+		<span><%= link_to "Login", new_user_session_url, :class => "button orange small" %></span>  
+		<span><%= link_to "Register", new_user_registration_url, :class => "button orange small" %></span> 
+		<span><%= link_to "Get Mail", receive_transactions_url, :class => "button orange small" %></span> 
+		<span><%= link_to "Send Mail", new_transaction_url, :class => "button orange small" %></span>
 	  <% end %>
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
 	</div>
 
-<%= yield %>
-
+  </div>
+  <div clas="content-wrapper"  style="background-color: #ecf7fd; border-top: 1px solid #a0e5f3;border-bottom: 1px solid #a0e5f3;">
+	<div class="content" style="width: 900px; margin: auto;">
+		<%= yield %>
+	</div>
+  </div>
 </body>
 </html>
