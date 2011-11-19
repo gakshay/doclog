@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :mobile, :email, :password, :password_confirmation, :remember_me
   
   validates_presence_of  :mobile, :if => :mobile_required?
-  validates_format_of    :mobile, :with => /(^[789][0-9]{9}$)|(^91[789][0-9]{9}$)/i, :allow_blank => true 
+  validates_format_of    :mobile, :with => /(^0?[789][0-9]{9}$)|(^91[789][0-9]{9}$)/i, :allow_blank => true 
   validates_uniqueness_of :mobile, :allow_blank => true
   validates_numericality_of :mobile, :only_integer => true, :allow_nil  => true
 
