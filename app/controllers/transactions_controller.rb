@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.xml
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.where("sender_mobile = ? or receiver_mobile = ? or receiver_email = ?", current_user.mobile, current_user.mobile, current_user.email).order("created_at")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.xml
   def show
-    @transaction = Transaction.find(params[:id])
+    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +36,8 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
-    @transaction = Transaction.find(params[:id])
+    #@transaction = Transaction.find(params[:id])
+    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile)
   end
 
   # POST /transactions
@@ -58,7 +59,8 @@ class TransactionsController < ApplicationController
   # PUT /transactions/1
   # PUT /transactions/1.xml
   def update
-    @transaction = Transaction.find(params[:id])
+    #@transaction = Transaction.find(params[:id])
+    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile)
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
@@ -74,7 +76,8 @@ class TransactionsController < ApplicationController
   # DELETE /transactions/1
   # DELETE /transactions/1.xml
   def destroy
-    @transaction = Transaction.find(params[:id])
+    #@transaction = Transaction.find(params[:id])
+    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile)
     @transaction.destroy
 
     respond_to do |format|
