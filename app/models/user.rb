@@ -14,7 +14,11 @@ class User < ActiveRecord::Base
 
   validates_format_of :password, :with => /(^[0-9]{4,12}$)/i, :allow_blank => true
 
-  before_create :create_email_for_user
+  before_create :filter_mobile_number, :create_email_for_user
+
+  def filter_mobile_number
+    self.mobile = self.mobile[/\d{10}$/]  
+  end
 
   def create_email_for_user
     self.email = "#{self.mobile}@edakia.in" unless self.mobile.blank?
@@ -25,7 +29,7 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     mobile = conditions.delete(:mobile)
-    where(conditions).where(["lower(mobile) = :value", { :value => mobile.downcase }]).first
+    where(conditions).where(["lower(mobile) = :value", { :value => mobile[/\d{10}$/]}]).first
   end
 
   def email_required?
