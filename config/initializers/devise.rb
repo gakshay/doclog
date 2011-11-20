@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "contact@gakshay.com"
+  config.mailer_sender = "contact@edakia.in"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -42,6 +42,7 @@ Devise.setup do |config|
 
   # Tell if authentication through HTTP Basic Auth is enabled. False by default.
   # config.http_authenticatable = false
+  config.http_authenticatable = true 
 
   # If http headers should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
