@@ -1,5 +1,5 @@
 class TransactionMailer < ActionMailer::Base
-  default :from => "akshay@gakshay.com"
+  default :from => "akshay@edakia.in"
   
   def welcome_email(user)
     @user = user
@@ -14,7 +14,7 @@ class TransactionMailer < ActionMailer::Base
       unless @recipient_email.blank?
         @sender = transaction.sender_mobile
         attachments["#{transaction.document.doc_file_name}"]  = File.read("#{Rails.root}/public#{transaction.document.doc.url.gsub(/\?\d+/, '')}")
-        mail(:to => @recipient_email, :from => "#{@sender}@gakshay.com", :subject => "New mail from #{@sender}")
+        mail(:to => @recipient_email, :from => "#{@sender}@edakia.in", :subject => "New mail from #{@sender}")
       end
     end
   end

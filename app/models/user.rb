@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   before_create :create_email_for_user
 
   def create_email_for_user
-    self.email = "#{self.mobile}@gakshay.com" unless self.mobile.blank?
+    self.email = "#{self.mobile}@edakia.in" unless self.mobile.blank?
   end
   
   protected
