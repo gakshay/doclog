@@ -8,6 +8,10 @@ Doclog::Application.routes.draw do
   end
 
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
+  
+  namespace :api do
+    resources :users 
+  end
 
   get "home/index"
   root :to => "home#index"
