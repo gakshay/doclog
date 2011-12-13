@@ -8,6 +8,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.datetime :doc_updated_at
       t.integer :sms_count
       t.string :direct_url
+      t.integer :status, :limit => 4
       t.timestamps
     end
     add_index :documents, :user_id

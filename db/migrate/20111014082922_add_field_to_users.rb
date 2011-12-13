@@ -10,6 +10,7 @@ class AddFieldToUsers < ActiveRecord::Migration
     add_column :users, :city, :string, :limit => 64 
     add_column :users, :state, :string, :limit => 64 
     add_column :users, :pincode, :string, :limit => 10 
+    add_column :users, :status, :integer, :limit => 4
     add_index :users, :mobile
   end
 
@@ -25,5 +26,6 @@ class AddFieldToUsers < ActiveRecord::Migration
     remove_column :users, :city
     remove_column :users, :state
     remove_column :users, :pincode
+    remove_column :users, :status
   end
 end

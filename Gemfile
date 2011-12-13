@@ -21,6 +21,7 @@ gem 'i18n', '0.6.0'
 gem 'jruby-openssl'
 gem "devise"
 gem "paperclip"
+gem "cancan", '1.6.4'
 
 # Use unicorn as the web server
 # gem 'unicorn'

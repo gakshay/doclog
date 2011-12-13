@@ -1,4 +1,8 @@
 Doclog::Application.routes.draw do
+  resources :payments
+
+  resources :machines
+
   resources :documents
 
   resources :transactions do 

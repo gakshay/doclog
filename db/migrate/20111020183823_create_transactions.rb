@@ -10,6 +10,8 @@ class CreateTransactions < ActiveRecord::Migration
     t.string :receiver_email
     t.boolean :sms_sent, :default => false
     t.integer :sms_count
+    t.string :type, :limit => 64
+    t.integer :status, :limit => 4
     t.datetime :sms_sent_time
     t.timestamps
    end
