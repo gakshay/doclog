@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   before_create :filter_mobile_number, :create_email_for_user
 
+  has_and_belongs_to_many :roles
+
   def filter_mobile_number
     self.mobile = self.mobile[/\d{10}$/]  
   end
