@@ -1,12 +1,11 @@
 class UserRoles < ActiveRecord::Migration
   def self.up
-    create_table :user_roles do |t| 
-      t.integer :user_id
-      t.integer :role_id
+    create_table :roles_users, :id => false do |t| 
+      t.references :role, :user
     end
   end
 
   def self.down
-    drop_table :user_roles
+    drop_table :roles_users
   end
 end

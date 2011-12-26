@@ -13,10 +13,15 @@ class User < ActiveRecord::Base
   validates_numericality_of :mobile, :only_integer => true, :allow_nil  => true
 
   validates_format_of :password, :with => /(^[0-9]{4,12}$)/i, :allow_blank => true
+  has_and_belongs_to_many :roles
+
+  def role?(role)
+    return !!self.roles.find_by_name(role.to_d.camelize)
+  end
+
+  # model hooks 
 
   before_create :filter_mobile_number, :create_email_for_user
-
-  has_and_belongs_to_many :roles
 
   def filter_mobile_number
     self.mobile = self.mobile[/\d{10}$/]  

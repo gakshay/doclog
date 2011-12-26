@@ -66,9 +66,14 @@ ActiveRecord::Schema.define(:version => 20111213082751) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "CreateRoles"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "sms", :force => true do |t|
@@ -103,11 +108,6 @@ ActiveRecord::Schema.define(:version => 20111213082751) do
   add_index "transactions", ["receiver_email"], :name => "index_transactions_on_receiver_email"
   add_index "transactions", ["receiver_mobile"], :name => "index_transactions_on_receiver_mobile"
   add_index "transactions", ["sender_mobile"], :name => "index_transactions_on_sender_mobile"
-
-  create_table "user_roles", :force => true do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
