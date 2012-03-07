@@ -1,9 +1,12 @@
 <h1>Listing transactions</h1>
+<%= link_to 'Send New Document', new_transaction_path, :class => "button gray" %>
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
+    <th>S.No</th>
+    <th>Document</th>
+    <th>Date</th>
+    <th>Secret Code</th>
     <th></th>
   </tr>
 
@@ -11,6 +14,7 @@
   <tr>
     <td><%= link_to "#{transaction.id}", transaction %></td>
     <td><%= link_to "#{transaction.document.doc_file_name}", transaction.document.doc.url(:original, false) %></td>
+    <td><%= transaction.created_at %></td>
     <td><%= transaction.document_secret %></td>
     <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
     <td><%= link_to 'x', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -20,4 +24,3 @@
 
 <br />
 
-<%= link_to 'New Transaction', new_transaction_path %>
