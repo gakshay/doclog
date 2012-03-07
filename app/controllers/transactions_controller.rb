@@ -97,7 +97,10 @@ class TransactionsController < ApplicationController
         @transaction = Transaction.get_document(params[:transaction][:receiver_mobile], params[:transaction][:receiver_email], params[:transaction][:document_secret]) 
         unless @transaction.blank?
           @document = @transaction.document
-            send_file "public#{@document.doc.url(:original, false)}" , :type => "#{@document.doc_content_type}" 
+          respond_to do |format|
+            format.html { send_file "public#{@document.doc.url(:original, false)}" , :type => "#{@document.doc_content_type}" }
+            format.xml{render :xml => @document} 
+          end
         else
           respond_to do |format|
             @transaction = Transaction.new(params[:transaction])
