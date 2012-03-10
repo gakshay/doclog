@@ -16,12 +16,13 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.xml
   def show
-    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile)
-
+    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile).first
+    unless @transacion
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @transaction }
       format.json  { render :json => @transaction }
+    end
     end
   end
 
@@ -35,7 +36,7 @@ class TransactionsController < ApplicationController
       format.xml  { render :xml => @transaction }
     end
   end
-
+=begin
   # GET /transactions/1/edit
   def edit
     #@transaction = Transaction.find(params[:id])
@@ -76,7 +77,7 @@ class TransactionsController < ApplicationController
       end
     end
   end
-
+=end
   # DELETE /transactions/1
   # DELETE /transactions/1.xml
   def destroy

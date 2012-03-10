@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
+<p> <strong>Sender:</strong> <%= @transaction.sender_mobile %> </p>
+<p> <strong>Receiver:</strong> <%= @transaction.receiver_mobile %> </p>
+<p> <strong>Secret Code:<strong> <%= @transaction.document_secret %> </p>
+<p> <strong>Date:<strong> <%= @transaction.created_at %> </p>
+<p> <%= link_to "Download", @transaction.document.doc.url(:original, false), :class => "button green large" %></p>
 
 
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
+<%= link_to 'Back to Document Store', transactions_path %>
+<%#= link_to 'Edit', edit_transaction_path(@transaction) %>
