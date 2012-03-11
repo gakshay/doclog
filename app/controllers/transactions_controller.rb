@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
   # GET /transactions.xml
   def index
     @transactions = Transaction.where("sender_mobile = ? or receiver_mobile = ? or receiver_email = ?", current_user.mobile, current_user.mobile, current_user.email).order("created_at")
-
+    #print request.env.inspect
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @transactions }
@@ -100,27 +100,27 @@ class TransactionsController < ApplicationController
           @document = @transaction.document
           respond_to do |format|
             format.html { send_file "public#{@document.doc.url(:original, false)}" , :type => "#{@document.doc_content_type}" }
-            format.xml{render :xml => @document} 
+            format.xml #receive.xml 
           end
         else
           respond_to do |format|
             @transaction = Transaction.new(params[:transaction])
             format.html { render :action =>  "receive"}
-            format.xml  { head :ok }
+            format.xml  
           end
         end
       else
         respond_to do |format|
           @transaction = Transaction.new(params[:transaction])
           format.html { render :action =>  "receive"}
-          format.xml  { head :ok }
+          format.xml  
          end
       end
     else
       @transaction = Transaction.new
       respond_to do |format|
         format.html # receive.html.erb
-        format.xml  { render :xml => @transaction }
+        format.xml  
       end
     end
   end
