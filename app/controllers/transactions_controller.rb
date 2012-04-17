@@ -31,7 +31,6 @@ class TransactionsController < ApplicationController
   # POST /transactions.xml
   def create
     @transaction = Transaction.new(params[:transaction])
-
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to(@transaction, :notice => 'Transaction was successfully created.') }
