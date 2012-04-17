@@ -25,24 +25,8 @@ class TransactionsController < ApplicationController
     end
     end
   end
-
-  # GET /transactions/new
-  # GET /transactions/new.xml
-  def new
-    @transaction = Transaction.new
-    @transaction.build_document
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @transaction }
-    end
-  end
-=begin
-  # GET /transactions/1/edit
-  def edit
-    #@transaction = Transaction.find(params[:id])
-    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile)
-  end
-
+  
+  
   # POST /transactions
   # POST /transactions.xml
   def create
@@ -59,6 +43,23 @@ class TransactionsController < ApplicationController
         format.json  { render :json => @transaction.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  # GET /transactions/new
+  # GET /transactions/new.xml
+  def new
+    @transaction = Transaction.new
+    @transaction.build_document
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @transaction }
+    end
+  end
+=begin
+  # GET /transactions/1/edit
+  def edit
+    #@transaction = Transaction.find(params[:id])
+    @transaction = Transaction.where("id = ? and (sender_mobile = ? or receiver_mobile = ?)  ", params[:id], current_user.mobile, current_user.mobile)
   end
 
   # PUT /transactions/1
