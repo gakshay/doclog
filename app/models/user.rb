@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :mobile, :allow_blank => true
   validates_numericality_of :mobile, :only_integer => true, :allow_nil  => true
 
-  validates_format_of :password, :with => /(^[0-9]{4,12}$)/i, :allow_blank => true
+  validates_format_of :password, :with => /(^[0-9]{4,6}$)/i, :allow_blank => true, :message => "Password: Only 4-6 Integers Allowed"
 
   before_create :filter_mobile_number, :create_email_for_user
 

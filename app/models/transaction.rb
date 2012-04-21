@@ -43,7 +43,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def generate_document_secret
-    self.document_secret = Time.now.to_i.to_s(36)
+    self.document_secret = "%06d" % rand(10**6) #Time.now.to_i.to_s(36)
   end
 
   def deliver_document_secret_sms
