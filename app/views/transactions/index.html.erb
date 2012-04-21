@@ -1,6 +1,7 @@
 <h1><%= current_user.mobile %>'s Document Store</h1>
 <%= link_to 'Send New eDakia mail', new_transaction_path, :class => "button gray" %>
 
+<% unless @transactions.blank? %>
 <table>
   <tr>
     <th>S.No</th>
@@ -9,22 +10,25 @@
     <th>Secret Code</th>
     <th></th>
   </tr>
-
-<% @transactions.each do |transaction| %>
-  <tr>
-    <td><%= link_to "#{transaction.id}", transaction %></td>
-    <td><%= link_to "#{transaction.document.doc_file_name}", transaction, :class => "white small" %></td>
-    <td><% if transaction.created_at.to_date == Date.today  %>
-		<%=		transaction.created_at.strftime("%I:%M %p")	%>
-		<% else %>
-		<%=		transaction.created_at.strftime("%d-%b-%Y") %>
-		<% end	 %>
-	</td>
-    <td><%= transaction.document_secret %></td>
-	<td><%= link_to "Download", transaction.document.doc.url(:original, false), :class => "button green small" %></td> 
-    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-    <td><%= link_to 'x', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
- </tr>
+	<% @transactions.each do |transaction| %>
+	  <tr>
+	    <td><%= link_to "#{transaction.id}", transaction %></td>
+	    <td><%= link_to "#{transaction.document.doc_file_name}", transaction, :class => "white small" %></td>
+	    <td><% if transaction.created_at.to_date == Date.today  %>
+			<%=		transaction.created_at.strftime("%I:%M %p")	%>
+			<% else %>
+			<%=		transaction.created_at.strftime("%d-%b-%Y") %>
+			<% end	 %>
+		</td>
+	    <td><%= transaction.document_secret %></td>
+		<td><%= link_to "Download", transaction.document.doc.url(:original, false), :class => "button green small" %></td> 
+	    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+	    <td><%= link_to 'x', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
+	 </tr>
+	<% end %>
+<% else %>
+	<p>No eDakia Mail sent.</p>
+	<p>Click "Send New eDakia Mail" and share documents on mobile number</p>
 <% end %>
 </table>
 
