@@ -13,7 +13,7 @@
 <% @transactions.each do |transaction| %>
   <tr>
     <td><%= link_to "#{transaction.id}", transaction %></td>
-    <td><%=  "#{transaction.document.doc_file_name}" %></td>
+    <td><%= link_to "#{transaction.document.doc_file_name}", transaction, :class => "white small" %></td>
     <td><% if transaction.created_at.to_date == Date.today  %>
 		<%=		transaction.created_at.strftime("%I:%M %p")	%>
 		<% else %>
