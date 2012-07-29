@@ -8,6 +8,7 @@ class Api::UsersController < ApplicationController
     respond_to do |format|
       format.html 
       format.json  { render :json => current_user }
+      format.xml {render :xml => current_user}
     end
   end
 
@@ -16,6 +17,7 @@ class Api::UsersController < ApplicationController
     respond_to do |format|
       format.html 
       format.json  { render :json => @user , :status => :ok}
+      format.xml {render :xml => @user}
     end
   end
 
